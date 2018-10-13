@@ -18,6 +18,14 @@ class Results extends Component {
 		return result;
 	}
 
+	buildMethodSignature(methodName, paramString) {
+		return `${methodName}( ${paramString} )`;
+	}
+
+	buildLink(methodName) {
+		return 'https://localhost:44324/api/example/' + methodName;
+	}
+
 	render() {
 		const { resultData } = this.props;
 		
@@ -27,7 +35,8 @@ class Results extends Component {
 	            {resultData.map( signature => (
 	                <li key={signature.methodName}>
 	                	<Typography variant="body1" gutterBottom>
-	                      	Method: {`${signature.methodName} ${this.buildParameterDisplay(signature.methodParams)}`}
+	                      	<a href="#">Exec. method =></a>
+	                      	{this.buildMethodSignature(signature.methodName, this.buildParameterDisplay(signature.methodParams))}
 	                    </Typography>
 	                  	<hr />
 	                </li>

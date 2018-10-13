@@ -10,11 +10,11 @@ class Header extends Component {
 		return (
 			<header className="App-header">
 	          <div className="App-header-title">
-	            <Typography variant="headline" gutterBottom color="inherit">Kiosk Search API</Typography>
+	            <Typography variant="headline" gutterBottom color="inherit">Generative API</Typography>
 	          </div>
-	          <div className="App-header-subtitle">
+	          {/*<div className="App-header-subtitle">
 	            <Typography variant="body2" gutterBottom color="inherit">Powered by ElasticSearch</Typography>
-	          </div>
+	          </div>*/}
 	        </header>
 		);
 	}
