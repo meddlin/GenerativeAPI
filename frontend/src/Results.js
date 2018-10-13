@@ -8,47 +8,28 @@ class Results extends Component {
 		this.state = { };
 	}
 
+	buildParameterDisplay(methodParams) {
+		var result = '';
+		if (methodParams.length > 0) {
+			methodParams.map( m => (
+				result = result + `${m.paramType} ${m.paramName}`
+			));
+		}
+		return result;
+	}
+
 	render() {
 		const { resultData } = this.props;
 		
 		return (
 			<div className="queryResult">
 	            <Typography variant="headline" gutterBottom>Results</Typography>
-	            {resultData.map( product => (
-	                <li key={product.productId}>
-	                  <div className="queryResult__item">
-	                    <div className="queryResult__item-title">
-	                      <Typography variant="body1" gutterBottom>Product ID:</Typography>
-	                    </div>
-	                    <div>
-	                      <Typography variant="body2" gutterBottom>{product.prodcutId}</Typography>
-	                    </div>
-	                  </div>
-	                  <div className="queryResult__item">
-	                    <div className="queryResult__item-title">
-	                      <Typography variant="body1" gutterBottom>Description:</Typography>
-	                    </div>
-	                    <div>
-	                      <Typography variant="body2" gutterBottom>{product.description}</Typography>
-	                    </div>
-	                  </div>
-	                  <div className="queryResult__item">
-	                    <div className="queryResult__item-title">
-	                      <Typography variant="body1" gutterBottom>Product #:</Typography>
-	                    </div>
-	                    <div>
-	                      <Typography variant="body2" gutterBottom>{product.productNumber}</Typography>
-	                    </div>
-	                  </div>
-	                  <div className="queryResult__item">
-	                    <div className="queryResult__item-title">
-	                      <Typography variant="body1" gutterBottom>Product Line:</Typography>
-	                    </div>
-	                    <div>
-	                      <Typography variant="body2" gutterBottom>{product.productLine}</Typography>
-	                    </div>
-	                  </div>
-	                  <hr />
+	            {resultData.map( signature => (
+	                <li key={signature.methodName}>
+	                	<Typography variant="body1" gutterBottom>
+	                      	Method: {`${signature.methodName} ${this.buildParameterDisplay(signature.methodParams)}`}
+	                    </Typography>
+	                  	<hr />
 	                </li>
 	            ) )}
 	        </div>

@@ -14,7 +14,8 @@ class App extends Component {
           isLoading: true,
           query: '',
           raw: '',
-          apiData: []
+          apiData: [],
+          methods: []
         };
     }
 
@@ -30,18 +31,25 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:17889/api/Query/ProductSearch?locations=415A&phrase=test&pageSize=3&pageNum=1&debug=true")
+        /*fetch("http://localhost:17889/api/Query/ProductSearch?locations=415A&phrase=test&pageSize=3&pageNum=1&debug=true")
           .then(res => res.json())
           .then( (res) => {
             this.setState({ apiData: res.data });
             this.setState({ query: JSON.parse(res.query) });
             this.setState({ raw: JSON.parse(res.raw) });
             this.setState({ isLoading: false });
-          });
+          });*/
+
+        fetch('https://localhost:44324/api/example/getmethods')
+            .then(results => results.json() )
+            .then(results => {
+                this.setState({ methods: results });
+                this.setState({ isLoading: false });
+            });
     }
 
     render() {
-    const { isLoading, apiData, query, raw, showQuery, showRaw } = this.state;
+    const { isLoading, apiData, query, raw, showQuery, showRaw, methods } = this.state;
     let queryDisplay, rawDisplay;
 
     return (
@@ -49,10 +57,10 @@ class App extends Component {
         <Header />
 
         <div className="debugPane">
-          <Results resultData={apiData} />
+          <Results resultData={methods} />
           <div className="queryData">
-            <ElasticQueryDisplay isLoading={isLoading} data={query} />
-            <ElasticRawDisplay isLoading={isLoading} data={raw} />
+            /*<ElasticQueryDisplay isLoading={isLoading} data={query} />
+            <ElasticRawDisplay isLoading={isLoading} data={raw} />*/
           </div>
         </div>
 
