@@ -1,12 +1,67 @@
-.App {
-  text-align: center;
+.App-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  background-color: #222;
+  color: white;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.App-header-title {
+  flex-grow: 2;
+  align-self: flex-end;
+  margin-left: 20px;
+}
+.App-header-subtitle {
+  flex-grow: 1;
+  text-align: right;
+  margin-right: 20px;
+  align-self: flex-end;
 }
 
-.App-link {
-  color: #61dafb;
+.debugPane {
+  display: flex;
+  flex-direction: row;
 }
+
+  .debugPane > .queryResult {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    flex-grow: 3;
+    min-width: 45em;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 30px;
+  }
+
+    .queryResult__item {
+      display: flex;
+      flex-direction: row;
+      padding-top: 3px;
+    }
+
+    .queryResult__item > .queryResult__item-title {
+      padding-right: 4px;
+    }
+
+  .debugPane > .queryData {
+    display: flex;
+    flex-direction: column;
+
+    flex-grow: 2;
+    margin-right: 20px;
+  }
+    .debugPane > .queryData .queryData__header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .debugPane > .queryData .queryData__header > button {
+      align-self: center;
+    }
+
+/* Utility styles */
+.hide { display: none; }
