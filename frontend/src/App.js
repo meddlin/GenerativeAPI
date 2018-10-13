@@ -1,40 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+import Methods from './Methods';
 import './App.css';
 
 class App extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            methods: {}
+            isLoading: true,
+            methodSignatures: ''
         };
     }
 
     getData() {
-        fetch('https://localhost:44324/api/example/getmethods')
-            .then(results => {
-                return results.json();
-            })
-            .then(data => {
-                this.setState({ methods: data });
-                console.log(data);
-            });
+        
     }
 
     componentDidMount() {
-        this.getData();
+        fetch('https://localhost:44324/api/example/getmethods')
+            .then(results => results.json())
+            .then(results => {
+                this.setState({ methodSignatures: results });
+            });
     }
 
     render() {
+        const { methodSignatures, isLoading } = this.state;
     return (
       <div className="App">
         <header className="App-header">Generative API</header>
-
-            <div>
-                List of these here
-                <a href="#">localhost/NameOfMethod</a>
-            </div>
+        <Methods isLoading={isLoading} signatures={methodSignatures} />
       </div>
     );
   }
