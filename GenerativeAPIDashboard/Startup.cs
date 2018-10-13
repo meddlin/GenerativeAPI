@@ -29,8 +29,19 @@ namespace GenerativeAPIDashboard
             //{
             //    options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             //});
-            services.AddCors();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
+
+            /* Unsure if using SetCompatibilityVersion() affects the CORS functionality. */
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,15 +51,10 @@ namespace GenerativeAPIDashboard
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
-            
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            app.UseHttpsRedirection();
+
+            app.UseCors("CorsPolicy");
             app.UseMvc();
-            
+
         }
     }
 }

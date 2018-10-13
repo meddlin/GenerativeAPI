@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GenerativeAPIDashboard.Controllers
 {
-    [EnableCors]
+    [EnableCors("CorsPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]/[action]")]
     [ApiController]
