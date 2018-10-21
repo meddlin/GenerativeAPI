@@ -3,6 +3,7 @@ import Header from './Header';
 import Results from './Results';
 import ElasticQueryDisplay from './ElasticQueryDisplay';
 import ElasticRawDisplay from './ElasticRawDisplay';
+import Methods from './Methods';
 import logo from './logo.svg';
 import './App.css';
 
