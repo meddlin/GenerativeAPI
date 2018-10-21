@@ -9,5 +9,6 @@ namespace GenerativeAPIDashboard.Models
     {
         public string ParamName { get; set; }
         public string ParamType { get; set; }
+        public List<Parameter> ParamPropertyInfo { get; set; }
     }
 }

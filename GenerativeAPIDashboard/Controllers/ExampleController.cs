@@ -28,7 +28,25 @@ namespace GenerativeAPIDashboard.Controllers
         private List<Parameter> BuildParamsList(List<ParameterInfo> paramStuff)
         {
             var data = new List<Parameter>();
-            paramStuff.ForEach((ps) => { data.Add(new Parameter() { ParamName = ps.Name, ParamType = $"{ps.ParameterType.Namespace}.{ps.ParameterType.Name}" }); });
+            paramStuff.ForEach(
+                (ps) => {
+                    data.Add(new Parameter()
+                    {
+                        ParamName = ps.Name,
+                        ParamType = $"{ps.ParameterType.Namespace}.{ps.ParameterType.Name}",
+                        ParamPropertyInfo = ps.ParameterType.IsClass ? GetEmbeddedParameterInfo(ps.ParameterType) : null
+                    });
+                });
+            return data;
+        }
+
+        private List<Parameter> GetEmbeddedParameterInfo(Type paramDefinedType)
+        {
+            var data = new List<Parameter>();
+            paramDefinedType.GetProperties().ToList().ForEach((p) =>
+            {
+                data.Add(new Parameter() { ParamName = p.Name, ParamType = p.PropertyType.Name });
+            });
             return data;
         }
 

@@ -9,7 +9,7 @@ class App extends Component {
 
         this.state = {
             isLoading: true,
-            methodSignatures: ''
+            methodSignatures: []
         };
     }
 

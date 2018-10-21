@@ -1,0 +1,13 @@
+.methods-list-item {
+	display: flex;
+	flex-direction: row;
+}
+
+.generatedMethodDisplay {
+	display: flex;
+	flex-direction: row;
+
+	cursor: pointer;
+	color: blue;
+	padding: 5px 0 5px 0;
+}
