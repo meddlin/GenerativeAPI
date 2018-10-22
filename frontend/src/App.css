@@ -10,3 +10,6 @@
 .App-link {
   color: #61dafb;
 }
+
+/* Utility styles */
+.hide { dipslay: none; }

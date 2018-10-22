@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ArrowDropDownCircle from '@material-ui/icons/ArrowDropDownCircle';
 import MethodForm from './methods/MethodForm';
 
 import './Methods.css';
@@ -8,14 +9,24 @@ class Methods extends Component {
         super(props);
 
         this.state = {
+            showForm: false,
             data: {}
         };
 
+        this.toggleFormDisplay = this.toggleFormDisplay.bind(this);
         this.handleMethodClick = this.handleMethodClick.bind(this);
     }
 
     componentDidMount() {
         
+    }
+
+    toggleFormDisplay() {
+        let toShow;
+        if (this.state.showForm) toShow = false;
+        else toShow = true;
+
+        this.setState({ showForm: toShow });
     }
 
     handleMethodClick(method) {
@@ -37,13 +48,14 @@ class Methods extends Component {
     }
 
     render() {
+        const { showForm } = this.state;
         const { signatures } = this.props;
 
         return (
             <div className="Methods">
                 
                 {signatures.map(sig => (
-                    <li key={sig.methodName} className="methods-list-item">
+                    <div key={sig.methodName} className="methods-list-item">
 
                         <div className="generatedMethodDisplay" onClick={this.handleMethodClick.bind(this, sig.methodName)}>
                             <div className="generatedMethodDisplay__name">{sig.methodName}</div>
@@ -52,9 +64,12 @@ class Methods extends Component {
                             </div>
                         </div>
 
-                        <MethodForm formParams={sig.methodParams} />
+                        <div className={showForm ? null : 'hide'}>
+                            <ArrowDropDownCircle onClick={this.toggleFormDisplay} />
+                            <MethodForm formParams={sig.methodParams} />
+                        </div>
 
-                    </li>
+                    </div>
                 ))}
 
             </div>
